@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{%- assign pageCSS = page.css -%}
+{%- assign pageJS = page.js -%}
+{%- assign buildAt = site.time | date: "%Y%m%d%H%M%S" -%}
+<html>
+{% include head.html %}
+<body ondragstart="return false;">
+{% include header.html %}
+{{ content }}
+{% include footer.html %}
+</body>
+</html>

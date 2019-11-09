@@ -1,0 +1,59 @@
+<!-- 点击文字特效 -->
+<script>
+  blog.addLoadEvent(function() {
+    var texts = [
+      '&hearts;富强&hearts;',
+      '&hearts;民主&hearts;',
+      '&hearts;文明&hearts;',
+      '&hearts;和谐&hearts;',
+      '&hearts;自由&hearts;',
+      '&hearts;平等&hearts;',
+      '&hearts;公正&hearts;',
+      '&hearts;法治&hearts;',
+      '&hearts;爱国&hearts;',
+      '&hearts;敬业&hearts;',
+      '&hearts;诚信&hearts;',
+      '&hearts;友善&hearts;'
+    ]
+    var temp = '<span style="top:{top}px;'
+    temp += 'left:{left}px;'
+    temp += 'font-size: 28px;'
+    temp += 'width: 90px;'
+    temp += 'z-index: 777;'
+    temp += 'position: absolute;'
+    temp += 'color: #f03752;'
+    temp += 'opacity: 1;'
+    temp += 'user-select: none;'
+    temp += '-webkit-user-select: none;'
+    temp += 'transition: all 700ms ease-in;'
+    temp += '-webkit-transition: all 700ms ease-in;"'
+    temp += '>{text}</span>'
+
+    blog.addEvent(window, 'click', function(ev) {
+      var tagName = ev.target.tagName.toLocaleLowerCase()
+      if (tagName == 'a') {
+        return
+      }
+      var text = texts[parseInt(Math.random() * texts.length)]
+      var html = temp.replace('{text}', text)
+      html = html.replace('{top}', ev.pageY - 40)
+      html = html.replace('{left}', ev.pageX - 45)
+
+      var o = document.createElement('div')
+      o.innerHTML = html
+      var node = o.children[0]
+
+      document.body.appendChild(node)
+      o = null
+      setTimeout(function() {
+        node.style.top = ev.pageY - 177 + 'px'
+        node.style.opacity = 0
+      }, 200)
+
+      setTimeout(function() {
+        document.body.removeChild(node)
+        node = null
+      }, 500)
+    })
+  })
+</script>
